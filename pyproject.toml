@@ -1,0 +1,66 @@
+[project]
+name = "dxf2obj"
+version = "0.1.0"
+description = "DXF geometry to Shaft and Pipe Element Mapper"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ezdxf>=1.4.1",
+    "shapely>=2.1.0",
+    "click>=8.1.8",
+    "rich>=14.0.0",
+    "tqdm>=4.66.0",
+    "lxml>=6.0.0",
+    "numpy>=2.3.1",
+]
+
+[project.scripts]
+dxf-mapper = "dxf_mapper.main:main"
+
+[dependency-groups]
+dev = [
+    "debugpy>=1.8.14",
+    "pyright>=1.1.400",
+    "pytest>=8.4.1",
+    "ruff>=0.11.8",
+]
+
+[tool.pyright]
+extraPaths = ["src", "tests"]
+stubPath = "/home/elyo/workspace/_data_/python/_stubs_"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".ipynb_checkpoints",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+]
+
+[tool.ruff.format]
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "T20"]
+ignore = ["E501", "T201"]
+fixable = ["ALL"]
+
+# [tool.ruff.lint.per-file-ignores]
+# "**/jrsin/*" = ["UP"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
